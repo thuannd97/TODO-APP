@@ -1,0 +1,90 @@
+<p>
+  word works!
+</p>
+<p>{{value}}</p>
+<button type="button" (click)="cong()">cong</button>
+<button type="button" (click)="tru()">tru</button>
+
+<button type="button" (click)="myFunc()">Is Handsome?</button>
+<span>{{handsome}}</span>
+<br/>
+
+<div class="ui input">
+  <input type="text" name="color" value="{{color}}" #colorinput/>
+</div>
+<div class="ui input">
+  <input type="text" name="fontSize" value="{{fontSize}}" #fontinput/>
+</div>
+<button class="ui primary button" (click)="apply(colorinput.value, fontinput.value)">
+  Apply Settings
+</button>
+<h4 class="ui hrizontal divider header">
+  ngStyle with object property from variable
+</h4>
+<div>
+  <span [ngStyle]="{color: color}">
+    {{color}} text
+  </span>
+</div>
+<h4 class="ui horizontal divider header">
+  style from vatiable
+</h4>
+<div [style.background-color]="color" style="color: white">
+  {{color}} background
+</div>
+<br>
+<div [ngClass]="{bordered: false}">this is never bodered</div>
+<div [ngClass]="{bordered: true}">this is bodered</div>
+<div [ngClass]="classesObj">
+  Using object var. Border {{classObj.bodered ? "ON" : "OFF"}}
+</div>
+<div class="base" [ngClass]="classList">
+  this is {{classList.indexOf('blue') > -1 ? "" : "NOT"}} blue
+  and {{classList.indexOf('round') > -1 ? "" : "NOT"}} round
+</div>
+<br>
+<div class="ui list" *ngFor="let city of cities">
+  <div>{{city}}</div>
+</div>
+<br>
+<h4 class="ui horizontal divider header">
+  list of objects
+</h4>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>city</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let p of people">
+    <th>{{p.name}}</th>
+    <th>{{p.age}}</th>
+    <th>{{p.city}}</th>
+  </tr>
+</table>
+<br>
+
+<!--nested arrays-->
+<div *ngFor="let item of peopleByCity">
+  <h4 class="ui horizontal divider header">{{item.city}}</h4>
+  <table class="ui celled table">
+    <thead>
+     <tr>
+       <th>Name</th>
+       <th>Age</th>
+     </tr>
+    </thead>
+    <tr *ngFor="let p of item.people">
+      <td>{{p.name}}</td>
+      <td>{{p.age}}</td>
+    </tr>
+  </table>
+</div>
+<br>
+
+<!--getting an index-->
+<div class="ui list" *ngFor="let c of cities; let num = index">
+  <div class="item">{{num + 1}} - {{c}}</div>
+</div>
